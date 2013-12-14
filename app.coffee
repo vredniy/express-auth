@@ -1,6 +1,6 @@
 express = require("express")
 routes = require("./routes")
-user = require("./routes/user")
+
 http = require("http")
 path = require("path")
 flash = require("connect-flash")
@@ -24,8 +24,6 @@ passport.deserializeUser (id, done) ->
   done null,
     id: id
 
-
-
 # all environments
 app.set "port", process.env.PORT or 3000
 app.set "views", path.join(__dirname, "views")
@@ -47,12 +45,17 @@ app.use express.static(path.join(__dirname, "public"))
 
 # development only
 app.use express.errorHandler()  if "development" is app.get("env")
+
+# routes
 app.get "/", routes.index
-app.get "/users", user.list
+app.get "/success", (req, res) ->
+  res.render "success"
+
 app.post "/login", passport.authenticate("local",
-  successRedirect: "/users"
+  successRedirect: "/success"
   failureRedirect: "/"
   failureFlash: true
 )
+
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
