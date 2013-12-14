@@ -1,0 +1,15 @@
+{
+  "name": "express-auth",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "coffee app.coffee"
+  },
+  "dependencies": {
+    "express": "3.4.7",
+    "jade": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "connect-flash": "*"
+  }
+}
