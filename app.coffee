@@ -8,10 +8,11 @@ passport = require("passport")
 LocalStrategy = require("passport-local").Strategy
 passport.use new LocalStrategy((username, password, done) ->
   if username is "user" and password is "pass"
-    done null,
-      id: 1
-
+    user = id: 1
+    app.locals.user = user
+    done null, user
   else
+    delete app.locals.user
     done null, false,
       message: "Incorrect"
 
