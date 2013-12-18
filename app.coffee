@@ -15,8 +15,8 @@ passport.use new LocalStrategy((username, password, done) ->
     delete app.locals.user
     done null, false,
       message: "Incorrect"
-
 )
+
 app = express()
 passport.serializeUser (user, done) ->
   done null, user.id
