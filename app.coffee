@@ -14,7 +14,7 @@ passport.use new LocalStrategy((username, password, done) ->
   else
     delete app.locals.user
     done null, false,
-      message: "Incorrect"
+      message: "Incorrect username or password"
 )
 
 app = express()
